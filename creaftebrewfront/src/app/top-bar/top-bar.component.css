@@ -1,0 +1,35 @@
+.box-row{
+  display: flex;
+  text-align: center;
+}
+.top_bar{
+  padding-left: 40px;
+  padding-right: 40px;
+  background-color: cornflowerblue;
+  height: 60px;
+}
+.logo{
+  flex: 1 1 auto;
+
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+.searching_panel{
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.searching_panel_input{
+  width: 90%;
+  height: 50%;
+}
+.menu{
+  flex: 1 1 auto;
+
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
