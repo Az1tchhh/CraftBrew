@@ -1,0 +1,40 @@
+.box-row-product{
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+.product_window{
+  margin-left: 200px;
+  width: 95%;
+}
+.product_image_box{
+  text-align: left;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+.product_img{
+  width: 200px;
+}
+.product_title{
+  display: flex;
+  justify-content: left;
+  align-items: start;
+}
+.product_description{
+  text-align: left;
+}
+.product_about{
+  width: 600px;
+}
+.product_title{
+  text-align: left;
+}
+.box-column{
+  display: flex;
+  flex-direction: column;
+}
+.product_price{
+  width:100px;
+}
+

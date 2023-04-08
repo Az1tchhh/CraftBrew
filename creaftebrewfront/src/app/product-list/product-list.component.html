@@ -1,1 +1,22 @@
 <p>product-list works!</p>
+
+<div class = "products_list">
+  <div class = "product_window box-row-product" *ngFor="let product of products">
+    <div class = "product_image_box">
+      <img class = "product_img" [src]="product.image" alt = "{{product.name}}">
+    </div>
+    <div class = "product_about box-column">
+      <div class = "product_title">
+        <h3>{{product.name}}</h3>
+      </div>
+      <div class = "product_description">
+        <p *ngFor = "let descr of product.description" class = "product_description">
+          {{descr.subdescr}}
+        </p>
+      </div>
+    </div>
+    <div class = "product_price">
+      <p>Price: {{product.price}}</p>
+    </div>
+  </div>
+</div>
