@@ -1,0 +1,44 @@
+name: craft-brew
+
+services:
+  backend: 
+    build:
+      context: backend
+      target: builder
+    networks:
+      - client-side
+      - server-side
+    ports: 
+      - 8000:8000
+    volumes:
+      - ./backend:/app
+      - ./backend/migrations:/app/migrations
+    environment:
+      - DJANGO_DB_HOST=db
+      - DJANGO_DB_PORT=5432
+      - DJANGO_DB_NAME=craftbrew
+      - DJANGO_DB_USER=arch
+      - DJANGO_DB_PASSWORD=arch
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15.2-alpine
+    restart: always
+    environment:
+      - POSTGRES_DB=craftbrew
+      - POSTGRES_USER=arch
+      - POSTGRES_PASSWORD=arch
+    networks:
+      - server-side
+    ports:
+      - 5432:5432
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+networks:
+  client-side: {}
+  server-side: {}
+
+volumes:
+  db-data: {}
