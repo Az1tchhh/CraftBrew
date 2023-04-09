@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM python:alpine3.17 AS builder
+FROM --platform=$BUILDPLATFORM python:3.11.3-slim-buster AS builder
 EXPOSE 8000
 WORKDIR /app 
 COPY requirements.txt /app
