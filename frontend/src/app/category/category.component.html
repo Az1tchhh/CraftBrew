@@ -1,0 +1,8 @@
+<div class = "box-column" id = "category_select_box" >
+  <h5 id = "category_heading">Select categories:</h5>
+  <select class = "select">
+    <option class = "option">None</option>
+    <option *ngFor = "let option of getCategory()" class = "option">{{option}}</option>
+  </select>
+</div>
+
