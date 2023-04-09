@@ -10,9 +10,10 @@
 }
 .product_window{
   margin-bottom: 20px;
-  border: 0.2rem solid orange;
+  border: 0.1rem solid lightgray;
   border-radius: 10px;
-
+  background-color: #ffffff;
+  box-shadow: 0 1px 7px 0 darkgray;
 }
 .product_image_box{
   width: 300px;
@@ -95,4 +96,11 @@
 .order_button:hover{
   background-color: #28a428;
 }
-
+.description{
+  font-size: larger;
+  font-weight: 500;
+  font-style: oblique;
+}
+.product_description_text{
+  font-size: 20px;
+}

@@ -10,7 +10,8 @@
       </div>
       <div class = "product_description">
         <p *ngIf = "product.description" class = "product_description">
-          {{product.description}}
+          <span class = "description">Description</span>: <br>
+          <span class = "product_description_text">{{product.description}}</span>
         </p>
       </div>
     </div>

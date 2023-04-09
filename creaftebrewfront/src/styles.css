@@ -3,7 +3,8 @@
 
 }
 body{
-  font-family: "Segoe UI", serif;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #fbfbfb;
 }
 .box-column{
   display: flex;
