@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM node:current-alpine as builder
+FROM --platform=$BUILDPLATFORM node:19-bullseye-slim AS builder
 
 RUN mkdir /project
 WORKDIR /project
