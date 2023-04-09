@@ -30,9 +30,20 @@
 }
 .menu{
   flex: 1 1 auto;
-
   display: flex;
   justify-content: right;
   align-items: center;
+}
+#menu_button{
+  text-decoration: underline dashed;
+  text-underline-position: under;
+  font-size: 1.3rem;
+}
+#menu_button:hover{
+  cursor: pointer;
+  color: forestgreen;
+}
+#menu_button:active{
+  color: limegreen;
 }
 
