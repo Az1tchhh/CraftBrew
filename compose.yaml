@@ -1,6 +1,18 @@
 name: craft-brew
 
 services:
+  frontend:
+    build:
+      context: frontend
+      target: builder
+    networks:
+      - client-side
+    ports:
+      - 4200:4200
+    volumes:
+      - ./frontend:/project
+      - /project/node_modules
+
   backend: 
     build:
       context: backend
