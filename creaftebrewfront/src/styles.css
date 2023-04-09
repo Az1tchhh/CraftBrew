@@ -2,3 +2,14 @@
 .input_change{
 
 }
+body{
+  font-family: "Segoe UI", serif;
+}
+.box-column{
+  display: flex;
+  flex-direction: column;
+}
+.box-row{
+  display: flex;
+  flex-direction: row;
+}

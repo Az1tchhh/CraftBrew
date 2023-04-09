@@ -1,5 +1,4 @@
-<p>product-list works!</p>
-
+<app-category></app-category>
 <div class = "products_list">
   <div class = "product_window box-row-product" *ngFor="let product of products">
     <div class = "product_image_box">
@@ -15,7 +14,7 @@
         </p>
       </div>
     </div>
-    <div class = "product_price_box">
+    <div class = "product_price_box box-column">
       <p><span class = "price_paragraph">Price:</span> <span class = "product_price">
             {{product.price | currency: '₸'}}</span>
       </p>
@@ -23,6 +22,10 @@
             {{product.rating}}
           </span>
       </p>
+      <div class = "sharing_box box-row">
+        <button class = "sharing order_button" style = "margin-right: 30px">Order</button>
+        <button class = "sharing share_button">Share</button>
+      </div>
     </div>
   </div>
 </div>

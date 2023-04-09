@@ -1,0 +1,40 @@
+#category_select_box{
+  position: absolute;
+  width: 200px;
+  justify-content: start;
+  align-items: center;
+  border: 0.2rem solid coral;
+  border-radius: 5px;
+}
+#category_heading{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  width: 150px;
+  margin-top: 20px;
+  background-color: cornflowerblue;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  height: 30px;
+}
+.select{
+  width: 80%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-left: 5px;
+  height: 30px;
+  border-color: cornflowerblue;
+  border-radius: 8px;
+
+}
+.option{
+
+}
+.hidden{
+  display: none;
+}
+.visible{
+  display: block;
+}
