@@ -1,10 +1,14 @@
 from django.urls import path
-from . import views
+from rest_framework.routers import DefaultRouter
+from .views import CategoryViewSet, ProductViewSet, OrderViewSet, OrderItemViewSet
+
+router = DefaultRouter()
+router.register(r'categories', CategoryViewSet)
+router.register(r'products', ProductViewSet)
+router.register(r'orders', OrderViewSet)
+router.register(r'orderitems', OrderItemViewSet)
 
 urlpatterns = [
-    path('products/', views.products, name='products'),
-    path('products/<int:id>/', views.product, name='product'),
-    path('categories/', views.categories, name='categories'),
-    path('categories/<int:id>/', views.category, name='category'),
-    path('categories/<int:id>/products/', views.products_by_category, name='products_by_category'),
 ]
+
+urlpatterns += router.urls

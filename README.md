@@ -3,17 +3,17 @@
 ## Perform migrations
 
 ```
-$ docker compose run backend manage.py migrate
+docker compose run backend manage.py migrate
 ```
 
 ## Create superuser for djano admin panel
 ```
-$ docker compose run backend manage.py createsuperuser
+docker compose run backend manage.py createsuperuser
 ```
 
 ## Deploy with docker compose
 ```
-$ docker compose up -d
+docker compose up -d
 ```
 
 
@@ -29,5 +29,5 @@ ca2d113910c2   craft-brew-backend     "python3 manage.py r…"   38 seconds ago 
 
 Stop and remove the containers
 ```
-$ docker compose down
+docker compose down
 ```

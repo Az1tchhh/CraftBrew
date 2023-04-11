@@ -1,94 +1,41 @@
-from django.http import JsonResponse
-from .models import Category, Product
+from rest_framework import viewsets, generics
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from .models import Category, Product, Order, OrderItem
+from .serializers import CategorySerializer, ProductSerializer, OrderSerializer, OrderItemSerializer
 
-def categories(request):
-    categories = Category.objects.all()
-    result = []
-    for category in categories:
-        products = []
-        for product in category.products.all():
-            products.append({
-                'id': product.id,
-                'url': f'/api/products/{product.id}/',
-                'name': product.name,
-                'price': product.price,
-                'description': product.description,
-                'image_url': product.image_url,
-                'rating': product.rating,
-            })
-        result.append({
-            'id': category.id,
-            'name': category.name,
-            'items': products,
-        })
-    return JsonResponse(result, safe=False)
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
 
-def category(request, id):
-    category = Category.objects.get(id=id)
-    products = []
-    for product in category.products.all():
-        products.append({
-            'id': product.id,
-            'url': f'/api/products/{product.id}/',
-            'name': product.name,
-            'price': product.price,
-            'description': product.description,
-            'image_url': product.image_url,
-            'rating': product.rating,
-        })
-    result = {
-        'id': category.id,
-        'name': category.name,
-        'items': products,
-    }
-    return JsonResponse(result)
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = self.get_serializer(queryset, many=True)
+        categories_data = serializer.data
+        response_data = {
+            'categories': categories_data
+        }
+        return Response(response_data)
 
-def products(request):
-    products = Product.objects.all()
-    result = []
-    for product in products:
-        result.append({
-            'id': product.id,
-            'url': f'/api/products/{product.id}/',
-            'name': product.name,
-            'price': product.price,
-            'description': product.description,
-            'image_url': product.image_url,
-            'rating': product.rating,
-            'category': product.category.id,
-        })
-    return JsonResponse(result, safe=False)
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
 
-def product(request, id):
-    product = Product.objects.get(id=id)
-    result = {
-        'id': product.id,
-        'name': product.name,
-        'price': product.price,
-        'description': product.description,
-        'image_url': product.image_url,
-        'rating': product.rating,
-        'category': product.category.id,
-    }
-    return JsonResponse(result)
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = self.get_serializer(queryset, many=True)
+        products_data = serializer.data
+        response_data = {
+            'products': products_data
+        }
+        return Response(response_data)
 
-def products_by_category(request, id):
-    category = Category.objects.get(id=id)
-    products = category.products.all()
-    products_list = []
-    for product in products:
-        products_list.append({
-            'id': product.id,
-            'url': f'/api/products/{product.id}/',
-            'name': product.name,
-            'price': product.price,
-            'description': product.description,
-            'image_url': product.image_url,
-            'rating': product.rating,
-        })
-    result = {
-        'id': category.id,
-        'name': category.name,
-        'items': products_list,
-    }
-    return JsonResponse(result)
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    permission_classes = [IsAuthenticated]
+
+class OrderItemViewSet(viewsets.ModelViewSet):
+    queryset = OrderItem.objects.all()
+    serializer_class = OrderItemSerializer
+    permission_classes = [IsAuthenticated]
