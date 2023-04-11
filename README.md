@@ -1,4 +1,4 @@
-# CraftBrew
+<p align="center"><img width="250" alt="CraftBrew logo" src="./craftbrew_logo_text_under.svg"></p>
 
 ## Perform migrations
 
