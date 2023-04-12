@@ -8,6 +8,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import {RouterModule} from "@angular/router";
 import { CategoryComponent } from './category/category.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
+import { RegistratinComponent } from './registratin/registratin.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { AuthenticationComponent } from './authentication/authentication.compone
     TopBarComponent,
     ProductListComponent,
     CategoryComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    RegistratinComponent
   ],
   imports: [
     BrowserModule,

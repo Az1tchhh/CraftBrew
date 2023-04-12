@@ -1,15 +1,22 @@
 .box-row{
   display: flex;
   text-align: center;
+  flex-direction: row;
 }
 .top_bar{
   padding-left: 40px;
   padding-right: 40px;
-  background-color: cornflowerblue;
+  background-color: #0f0f0f;
   height: 60px;
 }
+.top_bar_buttons{
+  font-size: 1.3rem;
+  width: 100px;
+  border: none;
+  border-radius: 5px;
+}
 .logo{
-  flex: 1 1 auto;
+  flex: auto;
   display: flex;
   justify-content: left;
   align-items: center;
@@ -19,7 +26,7 @@
   height: 50px;
 }
 .searching_panel{
-  flex: 1 1 auto;
+  flex: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,15 +36,20 @@
   height: 50%;
 }
 .menu{
-  flex: 1 1 auto;
+  flex: auto;
   display: flex;
+  flex-wrap: wrap;
   justify-content: right;
   align-items: center;
 }
 #menu_button{
-  text-decoration: underline dashed;
-  text-underline-position: under;
-  font-size: 1.3rem;
+  margin-left: 10px;
+}
+#sign_in{
+
+}
+#sign_up{
+  margin-left: 10px;
 }
 #menu_button:hover{
   cursor: pointer;
@@ -46,4 +58,19 @@
 #menu_button:active{
   color: limegreen;
 }
+#sign_up:hover{
+  cursor: pointer;
+  color: forestgreen;
+}
+#sign_up:active{
+  color: limegreen;
+}
+#sign_in:hover{
+  cursor: pointer;
+  color: forestgreen;
+}
+#sign_in:active{
+  color: limegreen;
+}
+
 

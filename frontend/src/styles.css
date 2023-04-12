@@ -5,6 +5,7 @@
 body{
   font-family: "Segoe UI", sans-serif;
   background-color: #fbfbfb;
+  margin: 0;
 }
 .box-column{
   display: flex;
