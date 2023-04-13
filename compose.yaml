@@ -2,8 +2,6 @@ name: craft-brew
 
 services:
   frontend:
-    environment:
-      - CHOKIDAR_USEPOLLING=true
     build:
       context: frontend
       target: builder
@@ -34,6 +32,9 @@ services:
       - DJANGO_DB_USER=arch
       - DJANGO_DB_PASSWORD=arch
     depends_on:
+      db:
+        condition: service_healthy
+    links:
       - db
 
   db:
@@ -48,11 +49,13 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - ./db/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 networks:
   client-side: {}
   server-side: {}
-
-volumes:
-  db-data: {}
