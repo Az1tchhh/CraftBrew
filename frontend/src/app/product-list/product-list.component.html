@@ -1,4 +1,5 @@
 <app-category></app-category>
+
 <div class = "products_list">
   <div class = "product_window box-row-product" *ngFor="let product of products">
     <div class = "product_image_box">
@@ -6,8 +7,8 @@
     </div>
     <div class = "product_about box-column">
       <div class = "product_title">
-        <h3>
-          <a [title]="product.name + ' details'">
+        <h3 class = "title">
+          <a class = "title_set" [title]="product.name + ' details'" [routerLink] = "['/product', product.id]">
             {{ product.name }}
           </a>
         </h3>

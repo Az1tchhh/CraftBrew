@@ -5,10 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { ProductListComponent } from './product-list/product-list.component';
-import {RouterModule} from "@angular/router";
+import {  RouterModule  } from "@angular/router";
 import { CategoryComponent } from './category/category.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { RegistratinComponent } from './registratin/registratin.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -17,14 +18,17 @@ import { RegistratinComponent } from './registratin/registratin.component';
     ProductListComponent,
     CategoryComponent,
     AuthenticationComponent,
-    RegistratinComponent
+    RegistratinComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot([
       {path : '', component: ProductListComponent},
-      {path : '', component: CategoryComponent}
+      {path : 'registration', component: RegistratinComponent},
+      {path : 'login', component: AuthenticationComponent},
+      {path : 'product/:id', component: ProductDetailsComponent}
     ])
   ],
   providers: [],

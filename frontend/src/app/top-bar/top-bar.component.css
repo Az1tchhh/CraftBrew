@@ -6,12 +6,14 @@
 .top_bar{
   padding-left: 40px;
   padding-right: 40px;
-  background-color: #0f0f0f;
-  height: 60px;
+  background-color: #1c1e1f;
+  height: 70px;
+
 }
 .top_bar_buttons{
   font-size: 1.3rem;
   width: 100px;
+  height: 35px;
   border: none;
   border-radius: 5px;
 }
@@ -22,18 +24,23 @@
   align-items: center;
 }
 .logo_img{
-  width:50px;
-  height: 50px;
+  width: 300px;
+
 }
 .searching_panel{
   flex: auto;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
 }
 .searching_panel_input{
   width: 90%;
-  height: 50%;
+  height: 55%;
+  background-color: #181a1b;
+  color: whitesmoke;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: medium;
 }
 .menu{
   flex: auto;

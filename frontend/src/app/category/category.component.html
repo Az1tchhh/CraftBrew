@@ -1,8 +1,10 @@
 <div class = "box-column" id = "category_select_box" >
-  <h5 id = "category_heading">Select categories:</h5>
-  <select class = "select">
-    <option class = "option">None</option>
-    <option *ngFor = "let option of getCategory()" class = "option">{{option}}</option>
-  </select>
+  <h4 id = "category_heading">Select categories:</h4>
+  <div class = "select box-column">
+    <h3 class = "option" [routerLink] = "['']">None</h3>
+    <h3 *ngFor = "let option of getCategory()" class = "option">
+        {{option}}
+    </h3>
+  </div>
 </div>
 

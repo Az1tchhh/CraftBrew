@@ -4,7 +4,7 @@
   justify-content: start;
   align-items: center;
   border: 0.1rem solid lightgray;
-  background-color: white;
+  background-color: #1d2021;
   border-radius: 5px;
   box-shadow: 0 1px 7px 0 darkgray;
   margin-left: 10px;
@@ -13,31 +13,34 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 17px;
   font-weight: 500;
   width: 150px;
   margin-top: 20px;
-  background-color: cornflowerblue;
-  border: none;
-  border-radius: 5px;
   color: white;
   height: 30px;
 }
 .select{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 80%;
   margin-top: 20px;
   margin-bottom: 20px;
   padding-left: 5px;
-  height: 30px;
   border-color: cornflowerblue;
   border-radius: 8px;
-
 }
 .option{
-
+  color: #1475e5;
+  font-style: oblique;
 }
 .hidden{
   display: none;
 }
 .visible{
   display: block;
+}
+h3:hover{
+  cursor: pointer;
 }

@@ -5,7 +5,7 @@
   margin-top: 100px;
 }
 .registration_box{
-  padding: 30px 70px 50px 70px;
+  padding: 30px 70px 30px 70px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -57,4 +57,29 @@
 
   box-shadow: 0 0 5px -1px #1475e5;
 }
+.user_aid_box{
+  width: 250px;
+  display: flex;
+  justify-content: center;
+}
+.user_aid_field{
+  display: flex;
 
+  font-size: 15px;
+}
+.sign_up_box{
+  margin-top: 10px;
+  width: 270px;
+  display: flex;
+  height: 50px;
+}
+.sign_up{
+  width: 100%;
+  font-size: 20px;
+  font-weight: 550;
+  background-color: #286ce6;
+  color: white;
+}
+.sign_up:hover{
+  cursor: pointer;
+}
