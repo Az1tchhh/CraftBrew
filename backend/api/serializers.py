@@ -5,21 +5,21 @@ from .models import Category, Product, Order, OrderItem
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['id', 'name']
+        fields = '__all__'
 
 class ProductSerializer(serializers.ModelSerializer):
     categories = CategorySerializer(many=True)
 
     class Meta:
         model = Product
-        fields = ['id', 'url', 'name', 'price', 'description', 'image_url', 'rating', 'count', 'categories']
+        fields = '__all__'
 
 class OrderSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField()
 
     class Meta:
         model = Order
-        fields = ['id', 'user', 'total_price', 'created_at']
+        fields = '__all__'
 
 class OrderItemSerializer(serializers.ModelSerializer):
     order = OrderSerializer()
@@ -27,4 +27,4 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OrderItem
-        fields = ['id', 'order', 'product', 'quantity']
+        fields = '__all__'
