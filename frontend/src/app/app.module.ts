@@ -10,7 +10,7 @@ import { CategoryComponent } from './category/category.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { RegistratinComponent } from './registratin/registratin.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-
+import {FormsModule} from "@angular/forms";
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +24,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     RouterModule.forRoot([
       {path : '', component: ProductListComponent},
       {path : 'registration', component: RegistratinComponent},

@@ -4,9 +4,12 @@
     <a [routerLink] = "['']"><img src = "../../assets/logo_right.svg" alt = "logo" class = "logo_img" ></a>
   </div>
   <div class = "searching_panel">
-    <input type = "text"
+    <input [(ngModel)] = "searchText"
+           (input)="Search()"
+           type = "text"
            placeholder = "Cappuccino..."
            class = "searching_panel_input input_change">
+    <p>Find</p>
   </div>
   <div class = "menu box-row">
     <button id = "sign_in" class = "top_bar_buttons push"><a [routerLink] = "['/login']">Sign In </a></button>
