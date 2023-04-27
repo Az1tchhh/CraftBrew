@@ -3,6 +3,7 @@ from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.decorators import api_view
 from .models import Category, Product, Order, OrderItem
 from .serializers import CategorySerializer, ProductSerializer, OrderSerializer, OrderItemSerializer
 
@@ -38,15 +39,13 @@ class OrderItemViewSet(viewsets.ModelViewSet):
     serializer_class = OrderItemSerializer
     permission_classes = [IsAuthenticated]
 
-class ProductByCategory(APIView):
-    def get_object(self, id):
-        try:
-            return Company.objects.get(id=id)
-        except Company.DoesNotExist as e:
-            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
-
-    def get(self, request, id):
-        instance = self.get_object(id)
-        vacancies = Vacancy.objects.all().filter(company = instance)
-        serializer = VacancySerializerS(vacancies, many=True)
+@api_view(['GET'])
+def productsByCategory(request, id):
+    try:
+        category = Category.objects.get(id=id)
+    except Category.DoesNotExist as e:
+        return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+    if request.method == 'GET':
+        products = category.products.all()
+        serializer = ProductSerializer(products, many=True)
         return Response(serializer.data)
