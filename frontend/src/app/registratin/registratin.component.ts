@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./registratin.component.css']
 })
 export class RegistratinComponent {
-
+  name!:string;
+  surname!:string;
+  username!:string;
+  password!:string;
 }

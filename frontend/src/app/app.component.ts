@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'creaftebrewfront';
+export class AppComponent implements OnInit{
+  static isLogged: boolean;
+  ngOnInit() {
+    const token = localStorage.getItem('token');
+    if(token){
+      AppComponent.isLogged = true;
+    }
+  }
+  title = 'Creaftebrewfront';
 }
