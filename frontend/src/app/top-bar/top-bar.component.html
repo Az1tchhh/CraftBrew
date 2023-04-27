@@ -1,17 +1,29 @@
 
 <div class = "top_bar box-row">
   <div class = "logo">
-    <img src = "images/craftbrew_logo_text_under.svg" alt = "logo" class = "logo_img">
+    <a [routerLink] = "['']"><img src = "../../assets/logo_right.svg" alt = "logo" class = "logo_img" ></a>
   </div>
   <div class = "searching_panel">
-    <input type = "text"
+    <input [(ngModel)] = "searchText"
+           type = "text"
            placeholder = "Cappuccino..."
            class = "searching_panel_input input_change">
+    <button (click)="Search()" class = "search_button">Find</button>
   </div>
   <div class = "menu box-row">
-    <button id = "sign_in" class = "top_bar_buttons push" >Sign In</button>
-    <button id = "sign_up" class = "top_bar_buttons">Sign Up</button>
-    <button id = "menu_button" class = "top_bar_buttons">Menu</button>
+    <ng-container *ngIf="isLogged">
+      <div class = "box-row">
+        <h2 style ="margin-right: 30px">Welcome!</h2>
+        <button class = "log_out" (click)="logout()">Log Out</button>
+      </div>
+
+    </ng-container>
+    <ng-container *ngIf="!isLogged">
+      <button id = "sign_in" class = "top_bar_buttons push"><a [routerLink] = "['/login']">Sign In </a></button>
+      <button id = "sign_up" class = "top_bar_buttons"><a [routerLink] = "['/registration']">Sign Up </a></button>
+    </ng-container>
+
+
   </div>
 </div>
 
