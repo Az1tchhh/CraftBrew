@@ -63,11 +63,7 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-<<<<<<< HEAD
-    "http://angular:4200",
-=======
     "http://localhost:4200",
->>>>>>> main
 ]
 
 MIDDLEWARE = [
