@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Category, Product, Order, OrderItem
+from .models import Category, Product, Order, OrderItem, Comment
 
 class CategorySerializer(serializers.Serializer):
     id = serializers.IntegerField()
@@ -19,6 +19,13 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
+        fields = '__all__'
+
+class CommentSerializer(serializers.ModelSerializer):
+    user = serializers.StringRelatedField()
+
+    class Meta:
+        model = Comment
         fields = '__all__'
 
 class OrderSerializer(serializers.Serializer):

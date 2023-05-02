@@ -1,11 +1,12 @@
-from rest_framework import viewsets, generics, status
+from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework.decorators import api_view
-from .models import Category, Product, Order, OrderItem
-from .serializers import CategorySerializer, ProductSerializer, OrderSerializer, OrderItemSerializer
+from rest_framework.decorators import action, api_view
+from django.contrib.auth.models import User
+
+from .models import Category, Product, Order, OrderItem, Comment
+from .serializers import CategorySerializer, ProductSerializer, OrderSerializer, OrderItemSerializer, CommentSerializer
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
@@ -29,6 +30,13 @@ class ProductViewSet(viewsets.ModelViewSet):
 
         return Response(products_data)
 
+    @action(detail=True, methods=['GET'])
+    def commentsByProduct(self, request, pk=None):
+        product = self.get_object()
+        comments = product.comments.all()
+        serializer = CommentSerializer(comments, many=True)
+        return Response(serializer.data)
+
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
@@ -49,3 +57,10 @@ def productsByCategory(request, pk):
         products = category.products.all()
         serializer = ProductSerializer(products, many=True)
         return Response(serializer.data)
+
+@api_view(['GET'])
+def commentsByUser(request, user_id):
+    user = User.objects.get(id=user_id)
+    comments = Comment.objects.filter(user=user)
+    serializer = CommentSerializer(comments, many=True)
+    return Response(serializer.data)
