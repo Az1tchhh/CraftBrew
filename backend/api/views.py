@@ -1,11 +1,12 @@
-from rest_framework import viewsets, generics, status
+from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework.decorators import api_view, permission_classes
-from .models import Category, Product, Order, OrderItem
-from .serializers import CategorySerializer, ProductSerializer, OrderSerializer, OrderItemSerializer
+from rest_framework.decorators import action, api_view, permission_classes
+from django.contrib.auth.models import User
+
+from .models import Category, Product, Order, OrderItem, Comment
+from .serializers import CategorySerializer, ProductSerializer, OrderSerializer, OrderItemSerializer, CommentSerializer
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
@@ -29,6 +30,13 @@ class ProductViewSet(viewsets.ModelViewSet):
 
         return Response(products_data)
 
+    @action(detail=True, methods=['GET'])
+    def commentsByProduct(self, request, pk=None):
+        product = self.get_object()
+        comments = product.comments.all()
+        serializer = CommentSerializer(comments, many=True)
+        return Response(serializer.data)
+
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
@@ -41,10 +49,9 @@ class OrderItemViewSet(viewsets.ModelViewSet):
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
-def productsByCategory(request, id):
-
+def productsByCategory(request, pk):
     try:
-        category = Category.objects.get(id=id)
+        category = Category.objects.get(pk=pk)
     except Category.DoesNotExist as e:
         return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
     if request.method == 'GET':
@@ -52,3 +59,9 @@ def productsByCategory(request, id):
         serializer = ProductSerializer(products, many=True)
         return Response(serializer.data)
 
+@api_view(['GET'])
+def commentsByUser(request, user_id):
+    user = User.objects.get(id=user_id)
+    comments = Comment.objects.filter(user=user)
+    serializer = CommentSerializer(comments, many=True)
+    return Response(serializer.data)

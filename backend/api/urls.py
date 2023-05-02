@@ -1,17 +1,20 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter, SimpleRouter
-from .views import CategoryViewSet, ProductViewSet, OrderViewSet, OrderItemViewSet, productsByCategory
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from django.urls import path
+from .views import CategoryViewSet, ProductViewSet, OrderViewSet, OrderItemViewSet, productsByCategory, commentsByUser
 
-router = DefaultRouter()
-router.register(r'categories', CategoryViewSet)
-router.register(r'products', ProductViewSet)
-router.register(r'orders', OrderViewSet)
-router.register(r'orderitems', OrderItemViewSet)
 urlpatterns = [
-    path('products/<int:id>/category', productsByCategory),
-    path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('categories/', CategoryViewSet.as_view({'get': 'list', 'post': 'create'}), name='category-list'),
+    path('categories/<int:pk>/', CategoryViewSet.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'}), name='category-detail'),
+    path('categories/<int:pk>/products', productsByCategory, name='products-by-category'),
+
+    path('products/', ProductViewSet.as_view({'get': 'list', 'post': 'create'}), name='product-list'),
+    path('products/<int:pk>/', ProductViewSet.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'}), name='product-detail'),
+    path('products/<int:pk>/comments/', ProductViewSet.as_view({'get': 'commentsByProduct'}), name='comments-by-product'),
+
+    path('orders/', OrderViewSet.as_view({'get': 'list', 'post': 'create'}), name='order-list'),
+    path('orders/<int:pk>/', OrderViewSet.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'}), name='order-detail'),
+
+    path('orderitems/', OrderItemViewSet.as_view({'get': 'list', 'post': 'create'}), name='orderitem-list'),
+    path('orderitems/<int:pk>/', OrderItemViewSet.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'}), name='orderitem-detail'),
+
+    path('users/<int:user_id>/comments/', commentsByUser, name='comments-by-user'),
 ]
-
-urlpatterns += router.urls
-
