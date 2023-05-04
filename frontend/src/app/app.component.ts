@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
 })
 export class AppComponent implements OnInit{
   static isLogged: boolean;
+  username!:string
   ngOnInit() {
     const token = localStorage.getItem('token');
     if(token){

@@ -41,4 +41,13 @@ export class TopBarComponent implements OnInit{
     AppComponent.isLogged = false;
     window.location.reload();
   }
+  openNav() {
+    // @ts-ignore
+    document.getElementById("mySidenav").style.width = "250px";
+  }
+
+  closeNav() {
+    // @ts-ignore
+    document.getElementById("mySidenav").style.width = "0";
+  }
 }

@@ -1,4 +1,10 @@
-
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
 <div class = "top_bar box-row">
   <div class = "logo">
     <a [routerLink] = "['']"><img src = "../../assets/logo_right.svg" alt = "logo" class = "logo_img" ></a>
@@ -8,22 +14,28 @@
            type = "text"
            placeholder = "Cappuccino..."
            class = "searching_panel_input input_change">
-    <button (click)="Search()" class = "search_button">Find</button>
+    <img (click)="Search()" class = "search_button" src = "assets/icons/find.svg">
   </div>
   <div class = "menu box-row">
     <ng-container *ngIf="isLogged">
       <div class = "box-row">
-        <h2 style ="margin-right: 30px">Welcome!</h2>
-        <button class = "log_out" (click)="logout()">Log Out</button>
+        <div class = "box-row LogOut" (click)="logout()">
+          <img id = "sign_in" class = "top_bar_buttons push" src = "assets/icons/logout.svg">
+          <span class = "LogService">Sign Out</span>
+        </div>
+        <span style="font-size:30px;cursor:pointer" (click)="openNav()" id="navBar">&#9776;</span>
       </div>
-
     </ng-container>
     <ng-container *ngIf="!isLogged">
-      <button id = "sign_in" class = "top_bar_buttons push"><a [routerLink] = "['/login']">Sign In </a></button>
-      <button id = "sign_up" class = "top_bar_buttons"><a [routerLink] = "['/registration']">Sign Up </a></button>
+      <div class = "box-row">
+        <a [routerLink] = "['/login']" class = "menu_tool box-row">
+          <img id = "sign_in" class = "top_bar_buttons push" src = "assets/icons/login.svg">
+          <span class = "LogService">Sign In</span>
+        </a>
+        <span style="font-size:30px;cursor:pointer" (click)="openNav()" id="navBar">&#9776;</span>
+      </div>
     </ng-container>
-
-
   </div>
 </div>
+
 
