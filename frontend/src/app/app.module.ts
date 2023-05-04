@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
@@ -12,6 +12,8 @@ import { TopBarComponent } from './top-bar/top-bar.component';
 import {RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { BasketComponent } from './basket/basket.component';
+import {AuthInterceptor} from "./AuthInterceptor";
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import {HttpClientModule} from "@angular/common/http";
     ProductDetailsComponent,
     ProductListComponent,
     RegistratinComponent,
-    TopBarComponent
+    TopBarComponent,
+    BasketComponent
   ],
   imports: [
     BrowserModule,
@@ -33,10 +36,17 @@ import {HttpClientModule} from "@angular/common/http";
       {path : '', component: ProductListComponent},
       {path : 'registration', component: RegistratinComponent},
       {path : 'login', component: AuthenticationComponent},
-      {path : 'product/:id', component: ProductDetailsComponent}
+      {path : 'product/:id', component: ProductDetailsComponent},
+      {path : 'basket', component: BasketComponent}
     ])
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

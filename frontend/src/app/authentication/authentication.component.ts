@@ -15,10 +15,15 @@ export class AuthenticationComponent{
   constructor(private loginService: LoginService, private router: Router) {
   }
   login(){
+    this.loginService.getIdOfUser(this.username).subscribe((data)=>{
+      AppComponent.usernameID = data.id
+    })
     this.loginService.login(this.username, this.password).subscribe((data)=>{
       console.log(data);
       localStorage.setItem('token', data.access);
+      localStorage.setItem('userId', AppComponent.usernameID.toString())
       AppComponent.isLogged = true;
+      AppComponent.username = this.username
       this.router.navigate([''])
     })
   }

@@ -36,8 +36,8 @@
         </ng-container>
         <ng-container *ngIf="isLogged">
           <div class = "sharing_box box-row">
-            <button class = "sharing order_button" style = "margin-right: 30px">Order</button>
-            <button class = "sharing share_button">Share</button>
+            <button class = "sharing order_button" style = "margin-right: 30px" (click)="order(this.usernameID, product.price)">Add</button>
+            <button class = "sharing share_button">Details</button>
           </div>
         </ng-container>
       </div>

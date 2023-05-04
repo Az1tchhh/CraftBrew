@@ -17,6 +17,7 @@
     <img (click)="Search()" class = "search_button" src = "assets/icons/find.svg">
   </div>
   <div class = "menu box-row">
+    <a [routerLink] = "['/basket']"><img src = "assets/icons/basket.svg" class = "basket"></a>
     <ng-container *ngIf="isLogged">
       <div class = "box-row">
         <div class = "box-row LogOut" (click)="logout()">

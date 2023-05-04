@@ -1,0 +1,9 @@
+<app-top-bar></app-top-bar>
+<h3>Orders:</h3>
+<div class = "cont">
+  <div class = "products">
+    <div class = "product" *ngFor = "let order of basketList">
+      <p>{{order.total_price}} ---- {{order.created_at}}</p>
+    </div>
+  </div>
+</div>

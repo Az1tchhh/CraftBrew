@@ -8,12 +8,19 @@ import {Router} from "@angular/router";
 })
 export class AppComponent implements OnInit{
   static isLogged: boolean;
-  username!:string
+  static username: string
+  static usernameID: number
   ngOnInit() {
+    const userId = localStorage.getItem('userId');
+    if(userId){
+      AppComponent.usernameID = parseInt(userId, 10)
+    }
     const token = localStorage.getItem('token');
     if(token){
       AppComponent.isLogged = true;
     }
+    console.log(AppComponent.usernameID)
+    console.log(AppComponent.isLogged)
   }
   title = 'Creaftebrewfront';
 }

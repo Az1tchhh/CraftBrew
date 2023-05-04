@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import action, api_view, permission_classes
 from django.contrib.auth.models import User
 from rest_framework import generics
-
+from django.http import JsonResponse
 from .models import Category, Product, Order, OrderItem, Comment
 from .serializers import CategorySerializer, ProductSerializer, OrderSerializer, OrderItemSerializer, CommentSerializer, UserSerializer
 
@@ -31,7 +31,7 @@ class ProductViewSet(viewsets.ModelViewSet):
 
         return Response(products_data)
 
-    @action(detail=True, methods=['GET', 'POST'])
+    @action(detail=True, methods=['GET'])
     def commentsByProduct(self, request, pk=None):
         if request.method == 'GET':
             product = self.get_object()
@@ -43,12 +43,14 @@ class ProductViewSet(viewsets.ModelViewSet):
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
+
+
 
 class OrderItemViewSet(viewsets.ModelViewSet):
     queryset = OrderItem.objects.all()
     serializer_class = OrderItemSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
 
 class UserCreateView(generics.CreateAPIView):
@@ -92,3 +94,25 @@ def commentsByUser(request, user_id):
             serializer.save(user=user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def find_user_by_username(request, username):
+    try:
+        user = User.objects.get(username=username)
+    except User.DoesNotExist:
+        return Response({'error': 'User not found'}, status=404)
+    if request.method == 'GET':
+        data = {'id': user.id}
+        return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def orders_by_user(request, id):
+    try:
+        users = User.objects.get(id=id)
+    except User.DoesNotExist:
+        return Response({'error': 'user not found'}, status=status.HTTP_400_BAD_REQUEST)
+    if request.method == 'GET':
+        orders =users.orders.all()
+        serializer = OrderSerializer(orders, many=True)
+        return Response(serializer.data)

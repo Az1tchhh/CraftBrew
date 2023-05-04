@@ -38,6 +38,7 @@ export class TopBarComponent implements OnInit{
   }
   logout(){
     localStorage.removeItem('token');
+    localStorage.removeItem('userId')
     AppComponent.isLogged = false;
     window.location.reload();
   }
