@@ -11,10 +11,10 @@
 .product_window{
   color: white;
   margin-bottom: 20px;
-  border: 0.1rem solid lightgray;
+  border: none;
   border-radius: 10px;
   background-color: #1d2021;
-  box-shadow: 0 1px 7px 0 darkgray;
+  box-shadow: 0 1px 4px 0 darkgray;
 }
 .product_image_box{
   width: 300px;
@@ -76,11 +76,14 @@
 }
 .product_price, .rating{
   font-size: 20px;
+
 }
 .rating{
   margin: 0 0 0 10px;
-  font-weight: 600;
-  font-style: oblique;
+  font-weight: 500;
+  font-size: x-large;
+  font-style: normal;
+  font-family: monospace;
 }
 .sharing_box{
   margin-top: 20px;
@@ -119,4 +122,12 @@
 }
 .product_description_text{
   font-size: 20px;
+}
+.no_product{
+  font-weight: 500;
+  margin-top: 200px;
+  color: red;
+  z-index: 4;
+  background-color: red;
+  font-family: monospace;
 }

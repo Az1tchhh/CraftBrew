@@ -1,7 +1,13 @@
 from django.urls import path
-from .views import CategoryViewSet, ProductViewSet, OrderViewSet, OrderItemViewSet, productsByCategory, commentsByUser
-
+from .views import UserCreateView, register_user, CategoryViewSet, ProductViewSet, OrderViewSet, OrderItemViewSet, productsByCategory, commentsByUser
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 urlpatterns = [
+    path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
     path('categories/', CategoryViewSet.as_view({'get': 'list', 'post': 'create'}), name='category-list'),
     path('categories/<int:pk>/', CategoryViewSet.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'}), name='category-detail'),
     path('categories/<int:pk>/products', productsByCategory, name='products-by-category'),
@@ -17,4 +23,5 @@ urlpatterns = [
     path('orderitems/<int:pk>/', OrderItemViewSet.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'}), name='orderitem-detail'),
 
     path('users/<int:user_id>/comments/', commentsByUser, name='comments-by-user'),
+    path('register/user/', UserCreateView.as_view())
 ]

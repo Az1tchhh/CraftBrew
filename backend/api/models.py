@@ -39,7 +39,7 @@ class Comment(models.Model):
         ordering = ['-created_at']
 
     def __str__(self):
-        return "Comment {} by {}".format(self.body, self.name)
+        return "Comment {} by {}".format(self.created_at, self.user)
 
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -10,6 +10,7 @@ import {AppComponent} from "../app.component";
 })
 export class ProductListComponent implements OnInit{
   productsFiltered!:Product[];
+
   isLogged = AppComponent.isLogged;
   constructor(private productService: ProductsService) {
   }
@@ -17,9 +18,15 @@ export class ProductListComponent implements OnInit{
     this.productService.getProducts().subscribe((data)=>{
       console.log(data);
       this.productsFiltered = data;
+
     })
   }
   onProductsFound(products: Product[]) {
     this.productsFiltered = products;
+    console.log(this.productsFiltered.length)
   }
+  share(){
+
+  }
+  order(){}
 }

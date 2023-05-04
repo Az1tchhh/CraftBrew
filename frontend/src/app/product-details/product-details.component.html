@@ -4,7 +4,7 @@
 <div class = "site_container box-column">
   <div class = "product_detail_box box-row" *ngIf = "product">
     <div class = "product_image_box">
-      <img src = "../../assets/{{product.name}}.png" class = "product_img">
+      <img src = "../../assets/productsAlbum/{{product.name}}.png" class = "product_img">
     </div>
     <div class = "product_about">
       <div class = "product_title">
@@ -28,10 +28,32 @@
       </div>
     </div>
   </div>
-
-  <div class = "commentary">
-    <div class = "comment_box" *ngFor = "let comment of comments">
-      <div *ngIf="comment"> <p>{{comment.product}}</p></div>
+  <div class = "box-row" style = "margin-top: 20px">
+    <ng-container *ngIf = "!clicked">
+      <h3 (click)="Click()" id = "click">Click to see comments</h3>
+    </ng-container>
+    <ng-container *ngIf = "clicked">
+      <h3 (click)="Click()" id = "click">Click to hide comments</h3>
+    </ng-container>
+    <div class = "give_comment">
+      <input type = "text"
+             placeholder = "Do you want to comment?"
+             class = "user_input_text"
+             [(ngModel)]="commentFromUser">
+      <button type="submit" class = "submitComment" (click)="submit(this.commentFromUser)">Submit</button>
     </div>
   </div>
+  <ng-container *ngIf = "clicked">
+  <div class = "commentary">
+    <div class = "comment_box box-column" *ngFor = "let comment of comments">
+      <div class = "username_box">
+        <p class = "user_name">{{comment.user}} <span class = "created_at">({{comment.created_at}})</span></p>
+      </div>
+      <div class = "comment">
+        <p class = "commentery_text">- {{comment.text}}</p>
+      </div>
+
+    </div>
+  </div>
+  </ng-container>
 </div>

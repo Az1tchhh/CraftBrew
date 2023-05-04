@@ -9,21 +9,15 @@
     <div class = "users_input_fields">
       <div class = "user_input">
         <input type = "text"
-               placeholder = "Input Name"
-               class = "user_input_text"
-               [(ngModel)]="name">
-      </div>
-      <div class = "user_input">
-        <input type = "text"
-               placeholder = "Input Surname"
-               class = "user_input_text"
-               [(ngModel)]="surname">
-      </div>
-      <div class = "user_input">
-        <input type = "text"
                placeholder = "Input Username"
                class = "user_input_text"
                [(ngModel)]="username">
+      </div>
+      <div class = "user_input">
+        <input type = "text"
+               placeholder = "Input Email"
+               class = "user_input_text"
+               [(ngModel)]="email">
       </div>
       <div class = "user_input">
         <input type = "text"
@@ -36,7 +30,7 @@
       <p class = "user_aid_field hv_acc"><a [routerLink] = "['/login']">Have an account?</a></p>
     </div>
     <div class = "sign_up_box">
-      <button class = "sign_up">Sign Up</button>
+      <button class = "sign_up" (click)="register()">Sign Up</button>
     </div>
   </div>
 </div>

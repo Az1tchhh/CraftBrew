@@ -8,13 +8,13 @@ import {Product} from "./products";
   providedIn: 'root'
 })
 export class CategoriesService {
-  BASE_URL = "http://localhost:8000";
+  BASE_URL = "http://localhost:8000/api";
   constructor(private client: HttpClient) { }
 
   getCategories(): Observable<Category[]>{
-    return this.client.get<Category[]>(`${this.BASE_URL}/api/categories/`);
+    return this.client.get<Category[]>(`${this.BASE_URL}/categories/`);
   }
   getProductsByCategory(id: number): Observable<Product[]>{
-    return this.client.get<Product[]>(`${this.BASE_URL}/products/${id}/category`)
+    return this.client.get<Product[]>(`${this.BASE_URL}/categories/${id}/products`)
   }
 }
